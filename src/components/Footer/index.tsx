@@ -28,8 +28,7 @@ const Footer = () => {
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-green-700 text-transparent bg-clip-text">Apna Sadhan</span>
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                  Arrive in Style, Depart with a Smile: Your Cab, Your Comfort!
                 </p>
                 <div className="flex items-center">
                   <a
