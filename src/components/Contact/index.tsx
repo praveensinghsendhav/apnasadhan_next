@@ -2,7 +2,7 @@ import NewsLatterBox from "./NewsLatterBox";
 import GetInTouch from "../GetInTouch";
 const Contact = () => {
   return (
-    <section id="contact" className="overflow-hidden py-8 md:py-12 lg:py-12 bg-blue-50/50">
+    <section id="contact" className="overflow-hidden py-8 md:py-12 lg:py-12 bg-blue-50/50 dark:bg-gray-900/50">
       <GetInTouch />
       <div className="container" id="ticket">
         <div className="-mx-4 flex flex-wrap">
