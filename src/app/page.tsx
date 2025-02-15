@@ -7,8 +7,23 @@ import Testimonials from "@/components/Testimonials";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "Apna Sadhan",
+  description: "Welcome to ApnaSadhan – Your Trusted Ride Partner!",
+  keywords: "ride, transport, trusted partner, Apna Sadhan",
+  openGraph: {
+    title: "Apna Sadhan",
+    description: "Welcome to ApnaSadhan – Your Trusted Ride Partner!",
+    url: "https://apnasadhaa.vercel.app",
+    type: "website",
+    images: [
+      {
+        url: "https://apnasadhaa.vercel.app/public/logo/as_logo.png",
+        width: 800,
+        height: 600,
+        alt: "Apna Sadhan",
+      },
+    ],
+  }
   // other metadata
 };
 
