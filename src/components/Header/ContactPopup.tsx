@@ -39,7 +39,7 @@ const ContactPopup = ({ toggleContactPopup, isOpen }) => {
         </button>
         <div className="flex flex-col space-y-4">
           <Link href="https://wa.me/7225955494" className="flex items-center space-x-2">
-            <Image src="/images/icons/Whatsapp.png" alt="WhatsApp" width={24} height={24} />
+            <Image src="/images/icons/wp.png" alt="WhatsApp" width={24} height={24} />
             <span>WhatsApp</span>
           </Link>
           <Link href="tel:9827217315" className="flex items-center space-x-2">
