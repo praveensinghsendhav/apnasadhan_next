@@ -34,7 +34,8 @@ const Hero = () => {
           <div className="w-full md:w-1/2 px-4">
             <div className="mx-auto max-w-[800px] text-center md:text-left flex justify-center items-center md:items-start flex-col">
               <h1 className="text-3xl md:text-5xl font-extrabold font-sans text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-[#06ab0b] flex items-center justify-center md:justify-start -mr-10 md:mr-0">
-                <Typewriter
+                APNA SADHAN
+                {/* <Typewriter
                   words={['APNA SADHAN']}
                   loop={0}
                   cursor
@@ -42,7 +43,7 @@ const Hero = () => {
                   typeSpeed={70}
                   deleteSpeed={50}
                   delaySpeed={5000}
-                />
+                /> */}
                 <Image
                   src="/images/logo/pankh.png"
                   alt="Icon"

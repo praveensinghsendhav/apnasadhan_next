@@ -5,29 +5,29 @@ import SingleTestimonial from "./SingleTestimonial";
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: "Musharof Chy",
-    designation: "Founder @TailGrids",
+    name: "Ritesh",
+    designation: "From Delhi",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-01.png",
+      "Mera safar bahut hi sukhad raha. Khargone, Omkareshwar aur Ujjain ghumne ka avsar mila. Dono Jyotirling ke darshan shanti se ho gaye, bina kisi dikkat ke. Cab service time par thi, aur pura safar suvidhajanak raha. Bahut accha anubhav raha!. Tez seva, saaf gaadi, vinamra driver, bejhijhak safar",
+    image: "/images/testimonials/noimage.jpg",
     star: 5,
   },
   {
     id: 2,
-    name: "Devid Weilium",
-    designation: "Founder @UIdeck",
+    name: "Pramod Joshi",
+    designation: "From Pune",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-02.png",
+      "Main Pune se Ujjain aaya tha aur yahan ki yatra bahut hi sukhad rahi. Cab service ekdum samay par thi, aur bina kisi pareshaani ke Mahakal darshan ho gaye. Phir Omkareshwar aur Maheshwar bhi ghumne ka sukh mila. Driver bhi bahut shaant aur sahayak the. Yeh safar humesha yaad rahega!",
+    image: "/images/testimonials/noimage.jpg",
     star: 5,
   },
   {
     id: 3,
-    name: "Lethium Frenci",
-    designation: "Founder @Lineicons",
+    name: "Rohit Thakur",
+    designation: "From Indore",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-03.png",
+      "Main Vadodara ek zaroori kaam se gaya tha, aur yeh safar bahut hi aasan aur suvidhajanak raha. Cab time par mili, safar bina kisi pareshaani ke pura hua. Driver bhi achha tha aur safar bahut smooth raha. Aage bhi main yahi service lena pasand karunga! App bhi ek baar jarur Gadi Book krein.",
+    image: "/images/testimonials/noimage.jpg",
     star: 5,
   },
 ];
