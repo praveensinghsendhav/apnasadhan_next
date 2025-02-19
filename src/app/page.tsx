@@ -6,6 +6,8 @@ import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
 import { Metadata } from "next";
 import Head from "next/head";
+import Packages from "@/components/Packages";
+import OurCabs from "@/components/OurCabs";
 
 export const metadata: Metadata = {
   title: "Apna Sadhan - Your Trusted Ride Partner",
@@ -80,6 +82,8 @@ export default function Home() {
       </Head>
       <ScrollUp />
       <Hero />
+      <Packages />
+      <OurCabs />
       <WhyChooseUs />
       <AboutSection />
       <Testimonials />
