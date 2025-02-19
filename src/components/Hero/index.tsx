@@ -55,7 +55,7 @@ const Hero = () => {
               <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
                 Arrive in Style, Depart with a Smile: Your Cab, Your Comfort!
               </p>
-              <div className="typewriter-container mt-6 p-4 rounded-lg bg-gradient-to-r from-[#092f98] to-[#06ab0b] shadow-lg text-lg md:text-xl font-medium bg-gradient-to-r from-blue-700 to-green-600 dark:from-blue-600 dark:to-green-600 bg-clip-text text-transparent min-h-36 md:min-h-24 flex items-center justify-center w-full">
+              <div className="typewriter-container mt-6 p-4 rounded-lg bg-gradient-to-r from-[#092f98] to-[#06ab0b] shadow-lg text-lg md:text-xl font-medium dark:from-blue-600 dark:to-green-600 bg-clip-text text-transparent min-h-36 md:min-h-24 flex items-center justify-center w-full">
                 <Typewriter
                   words={[
                     'Shaadi ho ya sagai, gaadi ki chinta mitai! Baraat le jaaye ya doli, hum ready hain! 💒🚖',
