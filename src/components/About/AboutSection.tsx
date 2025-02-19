@@ -116,19 +116,34 @@ const AboutSection = () => {
                   </div>
                 </Slider>
 
-                <div className="typewriter-container mt-6 p-4 rounded-lg bg-gradient-to-r from-[#092f98] to-[#06ab0b] shadow-lg text-lg md:text-xl font-medium bg-gradient-to-r from-blue-600 to-green-600 dark:from-blue-600 dark:to-green-600 bg-clip-text text-transparent min-h-36 md:min-h-24 flex items-center justify-center">
+                <div className="typewriter-container mt-6 p-4 rounded-lg shadow-lg text-lg md:text-xl font-medium bg-gradient-to-r from-blue-600 to-green-600 dark:from-blue-600 dark:to-green-600 bg-clip-text text-transparent min-h-36 md:min-h-24 flex items-center justify-center">
                   <Typewriter
                     words={[
-                      'Chalo kahin door, jahaan ho sukoon aur no shor! 🌍🚖',
-                      "Safar ho ya manzil, hum hain hamesha available! 🛣️✨",
+                      'Chalo kahin door, jahaan ho sukoon bharpur! 🌍🚖',
                       "Booking ho easy, ride ho breezy! 📲💨",
-                      "Bharosa jo jeeta, wahi driver sabse behtareen chuna! ✅🚘",
                       "Indore ho ya outstation, bas ek call pe destination! 📞🛤️",
                       "Gaadi ho smooth, safar ho cool! 🚗❄️",
-                      "Chalo kahin door, bina kisi fikar ka shor! 🛣️✨",
-                      "Raste ho lambe ya chhote, hum hamesha ready mote! 😎🚖",
-                      "Chahe ho dhoop ya ho baarish, ride hogi ekdum stylish! 🌞🌧️🚗",
-                      "Book karo aaj, tension-free kal! 📅✅",
+                      "Raste ho lambe ya chhote, hum hamesha ready hote! 😎🚖",
+                      "Ride ho mast, no time waste! ⏳🚖",
+                      "Garmi ho ya thandi, ride milegi badi hi comfy! ❄️🔥🚗",
+                      "Safar ho light, feel ho bright! ✨🛣️",
+                      "Booking ho fast, ride ho first-class! 🏆🚘",
+                      "Meter ho right, ride ho tight! 🔥📏",
+                      "Gaadi ho clean, ride lage dream! 💫🚗",
+                      "Traffic ho ya jam, hum rehte fir bhi calm! 🚦😎",
+                      "No stress, no fuss, sirf smooth ride ka plus! 🛣️✅",
+                      "Chalo aaram se, bina kisi jhanjhat ke! 🚗💨",
+                      "Ek call pe ride, tension-free guide! 📞🚖",
+                      "Chinta ko bolo bye, ride ho super fly! ✈️🚖",
+                      "No delay, no bore, bas smooth ride hardcore! 🚗🔥",
+                      "Gaadi ho classy, ride ho sassy! 😎🚘",
+                      "Meter chale fair, ride ho super rare! 🎯🚖",
+                      "No rush, no race, bas ride ka smooth grace! 🛣️✨",
+                      "Booking ho quick, ride ho slick! 📲🚗",
+                      "Driver ho nice, ride ho full spice! 🔥🚖",
+                      "Muskuraiye aur chaliye, ride ho badiya bhaiyye! 😃🚘",
+                      "Subah ho ya raat, ride ho ekdum shaandaar baat! 🌙🌞🚗",
+                      "Safety ka promise, comfort ka bonus! ✅🚖"
                     ]}
                     loop={0}
                     cursor
