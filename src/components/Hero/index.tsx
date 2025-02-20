@@ -84,7 +84,8 @@ const Hero = () => {
             </div>
             <div className="mt-6 flex justify-center  md:justify-start mx-auto w-full">
               <Link
-                href="https://wa.me/7225955494"
+                href="https://wa.me/7000609982?text=Hi%2C%20I%20want%20to%20book%20a%20cab%20on%20[Enter%20Date]%20at%20[Enter%20Time].%20Pickup%20from%20[Location]%20to%20[Location].%20Please%20confirm%20availability.
+"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-green-500  hover:from-blue-600 hover:to-green-600 transition-colors"
