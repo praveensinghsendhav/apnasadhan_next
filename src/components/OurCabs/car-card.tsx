@@ -76,7 +76,8 @@ export function CarCard({ car }: CarCardProps) {
       </CardContent>
       <CardFooter>
         <Link
-          href="https://wa.me/7225955494"
+          href="https://wa.me/7000609982?text=Hi%2C%20I%20want%20to%20book%20a%20cab%20on%20[Enter%20Date]%20at%20[Enter%20Time].%20Pickup%20from%20[Location]%20to%20[Location].%20Please%20confirm%20availability.
+"
           target="_blank"
           rel="noopener noreferrer" className=" px-4 py-2 text-white rounded-md border border-white bg-gradient-to-r from-blue-500 to-green-500 opacity-80 hover:bg-gradient-to-r hover:from-blue-700 hover:to-green-700 hover:text-white transition-colors cursor-pointer w-full text-center">Book Now</Link>
       </CardFooter>
