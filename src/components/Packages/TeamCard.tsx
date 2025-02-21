@@ -61,8 +61,7 @@ export function TeamCard({ imageUrl, name, city, social }: TeamCardProps) {
               </motion.a>
             )}
             <Link
-              href="https://wa.me/7000609982?text=%F0%9F%9A%96%20*Cab%20Booking%20Request*%0A%0A%F0%9F%91%A4%20*Name:*%20[Enter%20Name]%0A%F0%9F%93%8D%20*Pickup%20Location:*%20[Enter%20Location]%0A%F0%9F%93%8D%20*Drop%20Location:*%20[Enter%20Location]%0A%F0%9F%93%85%20*Date:*%20[Enter%20Date]%0A%E2%8F%B0%20*Time:*%20[Enter%20Time]%0A%F0%9F%9A%98%20*Cab%20Type:*%20[Hatchback/Sedan/SUV]%0A%0A%F0%9F%99%8F%20Please%20confirm%20availability!.
-"
+              href="https://wa.me/7000609982?text=Hello, I want to book a cab."
               target="_blank"
               rel="noopener noreferrer" className=" px-4 py-2 text-white rounded-md border border-white bg-gradient-to-r from-blue-500 to-green-500 opacity-80 hover:bg-gradient-to-r hover:from-blue-700 hover:to-green-700 hover:text-white transition-colors cursor-pointer">Book Now</Link>
           </div>
