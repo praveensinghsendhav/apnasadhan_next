@@ -8,6 +8,12 @@ import { Metadata } from "next";
 import Head from "next/head";
 import Packages from "@/components/Packages";
 import OurCabs from "@/components/OurCabs";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const metadata: Metadata = {
   title: "Apna Sadhan - Your Trusted Ride Partner",
@@ -80,6 +86,7 @@ export default function Home() {
           })}
         </script>
       </Head>
+      <Header />
       <ScrollUp />
       <Hero />
       <Packages />
@@ -88,6 +95,8 @@ export default function Home() {
       <AboutSection />
       <Testimonials />
       <Contact />
+      <Footer />
+      <ScrollToTop />
     </>
   );
 }

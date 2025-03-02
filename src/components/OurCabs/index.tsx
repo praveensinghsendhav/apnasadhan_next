@@ -1,49 +1,51 @@
 "use client";
 
+import React from 'react';
+import Slider from "react-slick";
 import { Car, CarCard } from "./car-card";
 import { Container } from "./container";
 import SectionTitle from '../Common/SectionTitle';
-
-const cars: Car[] = [
-  {
-    id: 1,
-    name: "ERTIGA",
-    image: "/images/our-cabs/ertiga.png",
-    capacity: "6 + Driver",
-    luggage: "2small",
-    musicPlayer: true,
-    ac: true,
-  },
-  {
-    id: 2,
-    name: "KIA",
-    image: "/images/our-cabs/carens.png",
-    capacity: "6 + Driver",
-    luggage: "2small",
-    musicPlayer: true,
-    ac: true,
-  },
-  {
-    id: 3,
-    name: "INNOVA CRYSTA",
-    image: "/images/our-cabs/innovablack.png",
-    capacity: "6/7 + Driver",
-    luggage: "2small",
-    musicPlayer: true,
-    ac: true,
-  },
-  {
-    id: 4,
-    name: "SEDAN",
-    image: "/images/our-cabs/hondacity.png",
-    capacity: "4 + Driver",
-    luggage: "2small",
-    musicPlayer: true,
-    ac: true,
-  },
-];
+import cars from '@/data/cars.json';
 
 export default function OurCabs() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0',
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <Container>
       <div className="py-12">
@@ -51,10 +53,14 @@ export default function OurCabs() {
           title="Our Cabs"
           center
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cars.map((car) => (
-            <CarCard key={car.id} car={car} />
-          ))}
+        <div className="mt-8">
+          <Slider {...settings} className="slick-slider">
+            {cars.map((car) => (
+              <div key={car.id} className="px-2">
+                <CarCard car={car} />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </Container>

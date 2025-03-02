@@ -1,0 +1,66 @@
+[
+  {
+    "imageUrl": "/images/packages/maheshwar.jpg",
+    "name": "Maheshwar",
+    "city": "Khargone District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/mandu.jpg",
+    "name": "Mandav",
+    "city": "Dhar District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/omkar.jpg",
+    "name": "Omkareshwar",
+    "city": "Khandwa District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/ujjain.jpg",
+    "name": "Ujjain",
+    "city": "Ujjain District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/sawraji.jpg",
+    "name": "Sawariya Seth",
+    "city": "Chittorgarh District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/jaipur.jpg",
+    "name": "Jaipur",
+    "city": "Jaipur City",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/ayodhya.jpg",
+    "name": "Ayodhya",
+    "city": "Ayodhya City",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  },
+  {
+    "imageUrl": "/images/packages/triambakeshwar.jpg",
+    "name": "Triambakeshwar",
+    "city": "Nashik District",
+    "social": {
+      "instagram": "https://www.instagram.com/apnasadhan"
+    }
+  }
+]

@@ -1,38 +1,50 @@
+"use client"
+import React from 'react';
+import Slider from "react-slick";
 import { Testimonial } from "@/types/testimonial";
 import SectionTitle from "../Common/SectionTitle";
 import SingleTestimonial from "./SingleTestimonial";
-
-const testimonialData: Testimonial[] = [
-  {
-    id: 1,
-    name: "Ritesh",
-    designation: "From Delhi",
-    content:
-      "Mera safar bahut hi sukhad raha. Khargone, Omkareshwar aur Ujjain ghumne ka avsar mila. Dono Jyotirling ke darshan shanti se ho gaye, bina kisi dikkat ke. Cab service time par thi, aur pura safar suvidhajanak raha. Bahut accha anubhav raha!. Tez seva, saaf gaadi, vinamra driver, bejhijhak safar",
-    image: "/images/testimonials/noimage.jpg",
-    star: 5,
-  },
-  {
-    id: 2,
-    name: "Pramod Joshi",
-    designation: "From Pune",
-    content:
-      "Main Pune se Ujjain aaya tha aur yahan ki yatra bahut hi sukhad rahi. Cab service ekdum samay par thi, aur bina kisi pareshaani ke Mahakal darshan ho gaye. Phir Omkareshwar aur Maheshwar bhi ghumne ka sukh mila. Driver bhi bahut shaant aur sahayak the. Yeh safar humesha yaad rahega!",
-    image: "/images/testimonials/noimage.jpg",
-    star: 5,
-  },
-  {
-    id: 3,
-    name: "Rohit Thakur",
-    designation: "From Indore",
-    content:
-      "Main Vadodara ek zaroori kaam se gaya tha, aur yeh safar bahut hi aasan aur suvidhajanak raha. Cab time par mili, safar bina kisi pareshaani ke pura hua. Driver bhi achha tha aur safar bahut smooth raha. Aage bhi main yahi service lena pasand karunga! App bhi ek baar jarur Gadi Book krein.",
-    image: "/images/testimonials/noimage.jpg",
-    star: 5,
-  },
-];
+import testimonialData from "@/data/usersays.json";
 
 const Testimonials = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0',
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <section id="testimonials" className="dark:bg-bg-color-dark bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -40,11 +52,14 @@ const Testimonials = () => {
           title="What Our Users Says"
           center
         />
-
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {testimonialData.map((testimonial) => (
-            <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
-          ))}
+        <div className="mt-8">
+          <Slider {...settings} className="slick-slider">
+            {testimonialData.map((testimonial) => (
+              <div key={testimonial.id} className="px-2">
+                <SingleTestimonial testimonial={testimonial} />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
       <div className="absolute right-0 top-5 z-[-1]">

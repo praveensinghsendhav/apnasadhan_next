@@ -1,75 +1,49 @@
 'use client';
 
+import React from 'react';
+import Slider from "react-slick";
 import { TeamCard } from './TeamCard';
 import SectionTitle from '../Common/SectionTitle';
+import tourPackages from '@/data/tourpackages.json';
 
 export default function Home() {
-  const teamMembers = [
-    {
-      imageUrl: '/images/packages/maheshwar.jpg',
-      name: 'Maheshwar',
-      city: 'Khargone District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0',
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
       }
-    },
-    {
-      imageUrl: '/images/packages/mandu.jpg',
-      name: 'Mandav',
-      city: 'Dhar District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/omkar.jpg',
-      name: 'Omkareshwar',
-      city: 'Khandwa District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/ujjain.jpg',
-      name: 'Ujjain',
-      city: 'Ujjain District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/sawraji.jpg',
-      name: 'Sawariya Seth',
-      city: 'Chittorgarh District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/jaipur.jpg',
-      name: 'Jaipur',
-      city: 'Jaipur City',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/ayodhya.jpg',
-      name: 'Ayodhya',
-      city: 'Ayodhya City',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    },
-    {
-      imageUrl: '/images/packages/triambakeshwar.jpg',
-      name: 'Triambakeshwar',
-      city: 'Nashik District',
-      social: {
-        instagram: 'https://www.instagram.com/apnasadhan'
-      }
-    }
-  ];
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16">
@@ -80,17 +54,19 @@ export default function Home() {
             center
           />
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <TeamCard
-              key={index}
-              imageUrl={member.imageUrl}
-              name={member.name}
-              city={member.city}
-              social={member.social}
-            />
-          ))}
+        <div className="mt-8">
+          <Slider {...settings} className="slick-slider">
+            {tourPackages.map((member, index) => (
+              <div key={index} className="px-2">
+                <TeamCard
+                  imageUrl={member.imageUrl}
+                  name={member.name}
+                  city={member.city}
+                  social={member.social}
+                />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </div>

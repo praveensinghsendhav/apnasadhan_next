@@ -13,6 +13,7 @@ export interface Car {
   luggage: string;
   musicPlayer: boolean;
   ac: boolean;
+  rate: string;
 }
 
 interface CarCardProps {
@@ -30,6 +31,9 @@ export function CarCard({ car }: CarCardProps) {
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
+          <div className="absolute top-2 left-2 bg-yellow-400 rounded-full p-2 shadow-lg opacity-80 bg-gradient-to-r from-blue-700 to-green-700 dark:bg-gradient-to-r dark:from-blue-700/50 dark:to-green-700/50 animate-pulse">
+            <span className="text-white text-sm font-bold underline">{car.rate}</span>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="p-6">

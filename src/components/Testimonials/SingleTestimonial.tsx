@@ -1,39 +1,50 @@
 import { Testimonial } from "@/types/testimonial";
 import Image from "next/image";
+import { useState } from "react";
+
 const starIcon = (
-  <svg width="18" height="16" viewBox="0 0 18 16" className="fill-current">
+  <svg width="18" height="16" viewBox="0 0 18 16" className="fill-current text-yellow">
     <path d="M9.09815 0.361679L11.1054 6.06601H17.601L12.3459 9.59149L14.3532 15.2958L9.09815 11.7703L3.84309 15.2958L5.85035 9.59149L0.595291 6.06601H7.0909L9.09815 0.361679Z" />
   </svg>
 );
 
 const SingleTestimonial = ({ testimonial }: { testimonial: Testimonial }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const { star, name, image, content, designation } = testimonial;
+  const maxContentLength = 100; // Set the maximum number of characters before truncating
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   let ratingIcons = [];
   for (let index = 0; index < star; index++) {
     ratingIcons.push(
-      <span key={index} className="text-yellow">
+      <span key={index}>
         {starIcon}
       </span>,
     );
   }
 
   return (
-    <div className="w-full">
-      <div className="rounded-sm bg-white p-8 shadow-two duration-300 hover:shadow-one dark:bg-dark dark:shadow-three dark:hover:shadow-gray-dark lg:px-5 xl:px-8">
-        <div className="mb-5 flex items-center space-x-1">{ratingIcons}</div>
-        <p className="mb-8 border-b border-body-color border-opacity-10 pb-8 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-10 dark:text-white  text-justify">
-          “{content}
-        </p>
-        <div className="flex items-center">
-          <div className="relative mr-4 h-[50px] w-full max-w-[50px] overflow-hidden rounded-full">
+    <div className="w-full h-[300px] bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-lg overflow-hidden">
+      <div className="p-6 h-full flex flex-col justify-between">
+        <div>
+          <div className="flex items-center space-x-1 mb-4">{ratingIcons}</div>
+          <div className={`text-base text-justify leading-relaxed text-gray-700 dark:text-gray-300 ${isExpanded ? 'overflow-y-auto' : 'overflow-hidden'}`} style={{ maxHeight: '100px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            “{isExpanded ? content : `${content.substring(0, maxContentLength)}...`}
+            {!isExpanded && content.length > maxContentLength && (
+              <span className="text-blue-500 dark:text-blue-400 cursor-pointer" onClick={toggleReadMore}> Read More</span>
+            )}
+          </div>
+        </div>
+        <div className="flex items-center mt-4">
+          <div className="relative mr-4 h-[50px] w-[50px] overflow-hidden rounded-full border-2 border-blue-500 dark:border-blue-400">
             <Image src={image} alt={name} fill />
           </div>
-          <div className="w-full">
-            <h3 className="mb-1 text-lg font-semibold text-dark dark:text-white lg:text-base xl:text-lg">
-              {name}
-            </h3>
-            <p className="text-sm text-body-color">{designation}</p>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{name}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{designation}</p>
           </div>
         </div>
       </div>

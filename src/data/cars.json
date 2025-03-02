@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "ERTIGA",
+    "image": "/images/our-cabs/ertiga.png",
+    "capacity": "6 + Driver",
+    "luggage": "2small",
+    "musicPlayer": true,
+    "ac": true, 
+    "rate" : "12₹/KM"
+  },
+  {
+    "id": 2,
+    "name": "KIA",
+    "image": "/images/our-cabs/carens.png",
+    "capacity": "6 + Driver",
+    "luggage": "2small",
+    "musicPlayer": true,
+    "ac": true, 
+    "rate" : "14₹/KM"
+  },
+  {
+    "id": 3,
+    "name": "INNOVA CRYSTA",
+    "image": "/images/our-cabs/innovablack.png",
+    "capacity": "6/7 + Driver",
+    "luggage": "2small",
+    "musicPlayer": true,
+    "ac": true, 
+    "rate" : "16₹/KM"
+  },
+  {
+    "id": 4,
+    "name": "SEDAN",
+    "image": "/images/our-cabs/hondacity.png",
+    "capacity": "4 + Driver",
+    "luggage": "2small",
+    "musicPlayer": true,
+    "ac": true, 
+    "rate" : "11₹/KM"
+  }
+]
