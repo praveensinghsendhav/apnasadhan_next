@@ -6,11 +6,18 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { Typewriter } from 'react-simple-typewriter';
+import React, { useState } from 'react';
+import BookingFormPopup from '../BookingFormPopup';
 
 // Dynamically import react-slick with no SSR
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const Hero = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -83,14 +90,12 @@ const Hero = () => {
               </div>
             </div>
             <div className="mt-6 flex justify-center  md:justify-start mx-auto w-full">
-              <Link
-                href="https://wa.me/7000609982?text=Hello, I want to book a cab."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-green-500  hover:from-blue-600 hover:to-green-600 transition-colors"
+              <button
+                onClick={openPopup}
+                className="inline-block px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 transition-colors"
               >
                 Book Now
-              </Link>
+              </button>
             </div>
           </div>
           <div className="w-full md:w-1/2 px-4 h-full sm:mt-8 md:mt-4 mt-16">
@@ -376,6 +381,7 @@ const Hero = () => {
           </svg>
         </div>
       </section>
+      <BookingFormPopup isOpen={isPopupOpen} onClose={closePopup} />
     </>
   );
 };

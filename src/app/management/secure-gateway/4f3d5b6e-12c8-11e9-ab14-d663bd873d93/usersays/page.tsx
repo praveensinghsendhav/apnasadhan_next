@@ -18,9 +18,11 @@ export default function UserSays() {
 
   // Use the UserSay type for the userSays state
   const [userSays, setUserSays] = useState<UserSay[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
 
   const fetchData = async () => {
     try {
+      setLoading(true); // Set loading to true when starting to fetch data
       const response = await fetch('/api/usersays');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,6 +31,8 @@ export default function UserSays() {
       setUserSays(data);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false); // Set loading to false after data is fetched
     }
   };
 
@@ -87,61 +91,67 @@ export default function UserSays() {
       <p style={{ textAlign: 'center', marginBottom: '20px', color: '#777' }}>
         Edit the details of user testimonials below and save the changes.
       </p>
-      <div style={{ overflowX: 'auto', paddingBottom: '10px' }}>
-        <div style={{ overflowX: 'auto', maxHeight: '400px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', minWidth: '800px' }}>
-            <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Name</span>
-            <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Designation</span>
-            <span style={{ marginRight: '10px', padding: '5px', width: '30%' }}>Content</span>
-            <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Image</span>
-            <span style={{ marginRight: '25px', padding: '5px', width: '10%' }}>Stars</span>
-          </div>
-          {userSays.map((userSay, index) => (
-            <div key={index} style={{ marginBottom: '15px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', display: 'flex', justifyContent: 'space-between', minWidth: '800px' }}>
-              <input
-                type="text"
-                value={userSay.name}
-                onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-                style={{ marginRight: '10px', padding: '5px', width: '15%' }}
-                placeholder="Name"
-              />
-              <input
-                type="text"
-                value={userSay.designation}
-                onChange={(e) => handleInputChange(index, 'designation', e.target.value)}
-                style={{ marginRight: '10px', padding: '5px', width: '15%' }}
-                placeholder="Designation"
-              />
-              <input
-                type="text"
-                value={userSay.content}
-                onChange={(e) => handleInputChange(index, 'content', e.target.value)}
-                style={{ marginRight: '10px', padding: '5px', width: '30%' }}
-                placeholder="Content"
-              />
-              <input
-                type="text"
-                value={userSay.image}
-                onChange={(e) => handleInputChange(index, 'image', e.target.value)}
-                style={{ marginRight: '10px', padding: '5px', width: '15%' }}
-                placeholder="Image URL"
-              />
-              <input
-                type="number"
-                value={userSay.star}
-                onChange={(e) => handleInputChange(index, 'star', e.target.value)}
-                style={{ marginRight: '10px', padding: '5px', width: '10%' }}
-                placeholder="Stars"
-              />
-              <FontAwesomeIcon
-                icon={faTrash}
-                onClick={() => deleteUserSay(index)}
-                style={{ color: '#dc3545', cursor: 'pointer', paddingTop: '7px' }}
-              />
-            </div>
-          ))}
+      {loading ? ( // Conditionally render loader
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <p>Loading...</p>
         </div>
-      </div>
+      ) : (
+        <div style={{ overflowX: 'auto', paddingBottom: '10px' }}>
+          <div style={{ overflowX: 'auto', maxHeight: '400px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', minWidth: '800px' }}>
+              <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Name</span>
+              <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Designation</span>
+              <span style={{ marginRight: '10px', padding: '5px', width: '30%' }}>Content</span>
+              <span style={{ marginRight: '10px', padding: '5px', width: '15%' }}>Image</span>
+              <span style={{ marginRight: '25px', padding: '5px', width: '10%' }}>Stars</span>
+            </div>
+            {userSays.map((userSay, index) => (
+              <div key={index} style={{ marginBottom: '15px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', display: 'flex', justifyContent: 'space-between', minWidth: '800px' }}>
+                <input
+                  type="text"
+                  value={userSay.name}
+                  onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+                  style={{ marginRight: '10px', padding: '5px', width: '15%' }}
+                  placeholder="Name"
+                />
+                <input
+                  type="text"
+                  value={userSay.designation}
+                  onChange={(e) => handleInputChange(index, 'designation', e.target.value)}
+                  style={{ marginRight: '10px', padding: '5px', width: '15%' }}
+                  placeholder="Designation"
+                />
+                <input
+                  type="text"
+                  value={userSay.content}
+                  onChange={(e) => handleInputChange(index, 'content', e.target.value)}
+                  style={{ marginRight: '10px', padding: '5px', width: '30%' }}
+                  placeholder="Content"
+                />
+                <input
+                  type="text"
+                  value={userSay.image}
+                  onChange={(e) => handleInputChange(index, 'image', e.target.value)}
+                  style={{ marginRight: '10px', padding: '5px', width: '15%' }}
+                  placeholder="Image URL"
+                />
+                <input
+                  type="number"
+                  value={userSay.star}
+                  onChange={(e) => handleInputChange(index, 'star', e.target.value)}
+                  style={{ marginRight: '10px', padding: '5px', width: '10%' }}
+                  placeholder="Stars"
+                />
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => deleteUserSay(index)}
+                  style={{ color: '#dc3545', cursor: 'pointer', paddingTop: '7px' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mt-5">
         <button
           onClick={addNewUserSay}
