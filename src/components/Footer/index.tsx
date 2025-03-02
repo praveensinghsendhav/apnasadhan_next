@@ -14,14 +14,14 @@ const Footer = () => {
                   <Image
                     src="/images/logo/as_logo.png"
                     alt="logo"
-                    className="w-full dark:hidden object-cover object-center"
+                    className=" dark:hidden object-cover object-center w-40 h-40"
                     width={100}
                     height={20}
                   />
                   <Image
                     src="/images/logo/as_logo.png"
                     alt="logo"
-                    className="hidden w-full dark:block object-cover object-center"
+                    className="hidden dark:block object-cover object-center w-40 h-40"
                     width={100}
                     height={20}
                   />
