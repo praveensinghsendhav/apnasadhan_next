@@ -7,7 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TourPackages() {
-  const [packages, setPackages] = useState([]);
+  // Define a type for the package object
+  type Package = {
+    name: string;
+    imageUrl: string;
+    city: string;
+    social: { instagram: string };
+  };
+
+  // Use the Package type for the packages state
+  const [packages, setPackages] = useState<Package[]>([]);
 
   const fetchData = async () => {
     try {

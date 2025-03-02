@@ -14,17 +14,14 @@ const SingleTestimonial = ({ testimonial }: { testimonial: Testimonial }) => {
   const maxContentLength = 100; // Set the maximum number of characters before truncating
 
   const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
+    setIsExpanded(prevState => !prevState);
   };
 
-  let ratingIcons = [];
-  for (let index = 0; index < star; index++) {
-    ratingIcons.push(
-      <span key={index}>
-        {starIcon}
-      </span>,
-    );
-  }
+  const ratingIcons = Array.from({ length: star }, (_, index) => (
+    <span key={index}>
+      {starIcon}
+    </span>
+  ));
 
   return (
     <div className="w-full h-[300px] bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-lg overflow-hidden">

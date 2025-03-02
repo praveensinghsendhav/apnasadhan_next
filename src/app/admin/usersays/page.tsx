@@ -6,7 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserSays() {
-  const [userSays, setUserSays] = useState([]);
+  // Define a type for the userSay object
+  type UserSay = {
+    id: number;
+    name: string;
+    designation: string;
+    content: string;
+    image: string;
+    star: number;
+  };
+
+  // Use the UserSay type for the userSays state
+  const [userSays, setUserSays] = useState<UserSay[]>([]);
 
   const fetchData = async () => {
     try {

@@ -6,7 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Cars() {
-  const [cars, setCars] = useState([]);
+  // Define a type for the car object
+  type Car = {
+    id: number;
+    name: string;
+    image: string;
+    capacity: string;
+    luggage: string;
+    musicPlayer: boolean;
+    ac: boolean;
+    rate: string;
+  };
+
+  // Use the Car type for the cars state
+  const [cars, setCars] = useState<Car[]>([]);
 
   const fetchData = async () => {
     try {
@@ -28,7 +41,7 @@ export default function Cars() {
     fetchData();
   }, []);
 
-  const handleInputChange = (index, field, value) => {
+  const handleInputChange = (index: number, field: string, value: any) => {
     const updatedCars = [...cars];
     updatedCars[index][field] = value;
     setCars(updatedCars);
@@ -96,7 +109,7 @@ export default function Cars() {
           <span style={{ marginRight: '0px', padding: '5px', width: '10%' }}>AC</span>
           <span style={{ marginRight: '10px', padding: '5px', width: '10%' }}>Rate</span>
         </div>
-        {cars.map((car, index) => (
+        {cars.map((car: any, index: number) => (
           <div key={index} style={{ marginBottom: '15px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', display: 'flex', justifyContent: 'space-between', minWidth: '800px' }}>
             <input
               type="text"

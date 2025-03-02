@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ContactPopup = ({ toggleContactPopup, isOpen }) => {
-  const popupRef = useRef(null);
+  const popupRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
         toggleContactPopup();
       }
     };
