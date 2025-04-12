@@ -14,8 +14,7 @@ const LoginForm = () => {
 
     // Replace these with your actual credentials
     const validName = 'praveen@adminapnasadhan';
-    const validPassword = '$2a$12$w14NGHZ/SG0yQd/3nZ77i..UG9Dz.vIygmANZpv1kyIUcY0rVMe7a';
-
+    const validPassword = '$2b$10$qb8jZGWZh4JE1SVc50tlOONSltEigNujHdsehxA9xUQAteOHOe6hy';
     if (name === validName) {
       // Compare the hashed password
       const isPasswordValid = await bcrypt.compare(password, validPassword);

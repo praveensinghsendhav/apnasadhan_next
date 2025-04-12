@@ -7,7 +7,7 @@ import Image from "next/image";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
 import ClickOutside from "@/components/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { FaUserShield, FaLock, FaKey, FaUsers, FaBuilding, FaTachometerAlt, FaSuitcase, FaCar, FaQuoteRight } from "react-icons/fa";
+import { FaUsers, FaTachometerAlt, FaSuitcase, FaCar, FaQuoteRight, FaEnvelope } from "react-icons/fa";
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
@@ -46,6 +46,20 @@ const menuGroups = [
         icon: <FaQuoteRight className="text-xl" />,
         label: "Testimonials",
         route: "/management/secure-gateway/4f3d5b6e-12c8-11e9-ab14-d663bd873d93/usersays"
+      },
+      {
+        icon: <FaEnvelope className="text-xl" />,
+        label: "Tickets",
+        route: "/management/secure-gateway/4f3d5b6e-12c8-11e9-ab14-d663bd873d93/tickets"
+      }, {
+        icon: <FaUsers className="text-xl" />,
+        label: "Subscribers",
+        route: "/management/secure-gateway/4f3d5b6e-12c8-11e9-ab14-d663bd873d93/subscribers"
+      },
+      {
+        icon: <FaCar className="text-xl" />,
+        label: "Attached Cars",
+        route: "/management/secure-gateway/4f3d5b6e-12c8-11e9-ab14-d663bd873d93/workwithus"
       }
     ]
   }

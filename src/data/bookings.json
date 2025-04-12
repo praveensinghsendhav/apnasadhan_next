@@ -1,35 +1,35 @@
 [
   {
-    "name": "Praveen Singh Thakur",
-    "number": "722595549",
+    "name": "PRAVEEN SINGH THAKUR",
+    "number": "7225955494",
     "email": "praveensinghsendhav2002@gmail.com",
     "pickupAddress": "Indore",
-    "dropAddress": "dewas",
-    "pickupDate": "2025-03-03",
-    "status": "completed",
-    "price": "",
-    "createdAt": "2025-03-02T15:49:56.111Z"
+    "dropAddress": "Dewas",
+    "pickupDate": "2025-04-12",
+    "status": "pending",
+    "createdAt": "2025-04-12T07:51:50.874Z",
+    "price": "8500"
   },
   {
-    "name": "Praveen Singh Thakur",
-    "number": "722595549",
+    "name": "Ramlakhan",
+    "number": "7225955494",
     "email": "praveensinghsendhav2002@gmail.com",
     "pickupAddress": "Indore",
-    "dropAddress": "dewas",
-    "pickupDate": "2025-03-03",
+    "dropAddress": "Dewas",
+    "pickupDate": "2025-04-26",
     "status": "pending",
-    "price": "",
-    "createdAt": "2025-03-02T15:50:04.247Z"
+    "createdAt": "2025-04-12T06:55:10.418Z",
+    "price": "6500"
   },
   {
     "name": "Praveen Singh Thakur",
     "number": "7225955494",
-    "email": "",
+    "email": "praveensinghsendhav2002@gmail.com",
     "pickupAddress": "Indore",
     "dropAddress": "Dewas",
-    "pickupDate": "2025-03-03",
-    "status": "completed",
-    "price": "",
-    "createdAt": "2025-03-02T15:56:28.719Z"
+    "pickupDate": "2025-04-18",
+    "status": "pending",
+    "createdAt": "2025-04-12T06:40:31.096Z",
+    "price": "9700"
   }
 ]

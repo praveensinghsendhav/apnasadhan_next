@@ -14,15 +14,15 @@ const Footer = () => {
                   <Image
                     src="/images/logo/as_logo.png"
                     alt="logo"
-                    className=" dark:hidden object-cover object-center w-40 h-40"
-                    width={100}
+                    className=" dark:hidden object-cover object-center h-40"
+                    width={180}
                     height={20}
                   />
                   <Image
                     src="/images/logo/as_logo.png"
                     alt="logo"
-                    className="hidden dark:block object-cover object-center w-40 h-40"
-                    width={100}
+                    className="hidden dark:block object-cover object-center h-40"
+                    width={180}
                     height={20}
                   />
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-green-700 text-transparent bg-clip-text">Apna Sadhan</span>

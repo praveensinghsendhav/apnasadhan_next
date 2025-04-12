@@ -8,15 +8,20 @@ import Image from "next/image";
 import { Typewriter } from 'react-simple-typewriter';
 import React, { useState } from 'react';
 import BookingFormPopup from '../BookingFormPopup';
+import WorkWithUsForm from '../WorkWithUs';
 
 // Dynamically import react-slick with no SSR
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const Hero = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isWorkWithUsOpen, setIsWorkWithUsOpen] = useState(false);
 
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
+
+  const openWorkWithUs = () => setIsWorkWithUsOpen(true);
+  const closeWorkWithUs = () => setIsWorkWithUsOpen(false);
 
   const settings = {
     dots: false,
@@ -89,12 +94,18 @@ const Hero = () => {
                 />
               </div>
             </div>
-            <div className="mt-6 flex justify-center  md:justify-start mx-auto w-full">
+            <div className="mt-6 flex justify-center md:justify-start mx-auto w-full">
               <button
                 onClick={openPopup}
                 className="inline-block px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 transition-colors"
               >
                 Book Now
+              </button>
+              <button
+                onClick={openWorkWithUs}
+                className="inline-block ml-4 px-4 py-3 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 transition-colors"
+              >
+                Work With Us
               </button>
             </div>
           </div>
@@ -382,6 +393,7 @@ const Hero = () => {
         </div>
       </section>
       <BookingFormPopup isOpen={isPopupOpen} onClose={closePopup} />
+      <WorkWithUsForm isOpen={isWorkWithUsOpen} onClose={closeWorkWithUs} />
     </>
   );
 };

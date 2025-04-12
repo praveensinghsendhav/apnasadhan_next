@@ -1,9 +1,78 @@
 "use client";
 
+import React, { useState } from 'react';
 import { useTheme } from "next-themes";
 
 const NewsLatterBox = () => {
   const { theme } = useTheme();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+
+  const validate = () => {
+    let valid = true;
+    const newErrors = { name: '', email: '', phone: '' };
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+      valid = false;
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+      valid = false;
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+      valid = false;
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Phone number is invalid';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    try {
+      const response = await fetch('/api/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setFormData({ name: '', email: '', phone: '' });
+        setErrors({ name: '', email: '', phone: '' });
+      } else {
+        alert('Failed to subscribe.');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      alert('An error occurred while subscribing.');
+    }
+  };
 
   return (
     <div className="relative z-10 rounded-sm bg-white p-8 shadow-three dark:bg-gray-dark sm:p-11 lg:p-8 xl:p-11">
@@ -15,25 +84,34 @@ const NewsLatterBox = () => {
           ApnaSadhan
         </span> and never miss out on our latest offers, discounts, and new services. Get real-time updates on special fares, new routes, and exclusive deals—directly on WhatsApp!
       </p>
-      <div>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
+          value={formData.name}
+          onChange={handleChange}
           placeholder="Enter your name"
           className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
         />
+        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
         <input
           type="email"
           name="email"
+          value={formData.email}
+          onChange={handleChange}
           placeholder="Enter your email"
           className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
         />
+        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         <input
           type="tel"
           name="phone"
+          value={formData.phone}
+          onChange={handleChange}
           placeholder="Enter your phone number"
           className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
         />
+        {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
         <input
           type="submit"
           value="Subscribe"
@@ -42,7 +120,7 @@ const NewsLatterBox = () => {
         <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
           No spam guaranteed, So please don&apos;t send any spam mail.
         </p>
-      </div>
+      </form>
 
       <div>
         <span className="absolute left-2 top-7">
