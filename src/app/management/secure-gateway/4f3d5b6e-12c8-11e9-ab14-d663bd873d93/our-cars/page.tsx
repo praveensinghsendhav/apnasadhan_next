@@ -22,6 +22,7 @@ import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
+import Image from "next/image";
 
 interface Car {
     id: number;
@@ -92,7 +93,7 @@ const CarsPage = () => {
 
   useEffect(() => {
     fetchData(currentPage, pagination.limit);
-  }, [currentPage]);
+  }, [currentPage, pagination.limit]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -372,7 +373,7 @@ const CarsPage = () => {
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100">
                 <div className="h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
                   {car.image ? (
-                    <img
+                    <Image
                       src={car.image}
                       alt={car.name || 'Car image'}
                       className="w-full h-full object-cover rounded-t-xl"
@@ -478,7 +479,7 @@ const CarsPage = () => {
               />
                           {car.image && (
                             <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200">
-                              <img
+                              <Image
                                 src={car.image}
                                 alt="Preview"
                                 className="w-full h-full object-cover"

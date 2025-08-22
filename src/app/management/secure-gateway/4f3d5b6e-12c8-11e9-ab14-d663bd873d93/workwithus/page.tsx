@@ -103,7 +103,7 @@ const WorkWithUsPage = () => {
 
   useEffect(() => {
     fetchWorkWithUsData(currentPage, pagination.limit);
-  }, [currentPage]);
+  }, [currentPage, pagination.limit]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);

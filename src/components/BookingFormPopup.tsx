@@ -380,7 +380,7 @@ const BookingFormPopup: React.FC<BookingFormPopupProps> = ({ isOpen, onClose }) 
         {/* Footer */}
         <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4 rounded-b-xl">
           <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
-            We'll confirm your booking within 30 minutes
+            We&apos;ll confirm your booking within 30 minutes
           </p>
         </div>
       </div>

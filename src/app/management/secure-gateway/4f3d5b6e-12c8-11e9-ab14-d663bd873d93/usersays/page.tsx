@@ -20,6 +20,7 @@ import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
+import Image from "next/image";
 
 interface UserSay {
     id: number;
@@ -88,7 +89,7 @@ const UserSaysPage = () => {
 
   useEffect(() => {
     fetchData(currentPage, pagination.limit);
-  }, [currentPage]);
+  }, [currentPage, pagination.limit]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -382,8 +383,10 @@ const UserSaysPage = () => {
                   
                   {/* Content */}
                   <p className="text-gray-700 mb-4 italic">
-                    "{userSay.content || 'No content available'}"
+                    &quot;{userSay.content || 'No content available'}&quot;
                   </p>
+
+
                   
                   {/* Stars */}
                   <div className="flex items-center mb-4">
@@ -395,7 +398,7 @@ const UserSaysPage = () => {
                   <div className="flex items-center">
                     <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">
                       {userSay.image ? (
-                        <img
+                        <Image
                           src={userSay.image}
                           alt={userSay.name || 'User'}
                           className="w-full h-full object-cover"
@@ -492,7 +495,7 @@ const UserSaysPage = () => {
                 />
                           {userSay.image && (
                             <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                              <img
+                              <Image
                                 src={userSay.image}
                                 alt="Preview"
                                 className="w-full h-full object-cover"

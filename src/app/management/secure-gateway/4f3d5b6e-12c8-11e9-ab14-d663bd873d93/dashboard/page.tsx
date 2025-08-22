@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { 
   Users, Car, Calendar, Mail, MessageSquare, Star, TrendingUp, Package,
   Phone, MapPin, Clock, CheckCircle, XCircle, AlertCircle, DollarSign, Eye, Trash2, Edit
@@ -52,14 +53,12 @@ export default function DashboardPage() {
     if (data && typeof data === 'object' && Array.isArray(data.userSays)) return data.userSays;
     return [];
   };
+
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
-  const fetchDashboardData = async () => {
+  // Use useCallback to memoize the fetchDashboardData function
+  const fetchDashboardData = useCallback(async () => {
     try {
       const endpoints = [
         '/api/savebooking', '/api/cars', '/api/subscribers', '/api/tickets',
@@ -84,7 +83,11 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []); // Empty dependency array since this function doesn't depend on any state or props
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]); // Now fetchDashboardData is included in the dependency array
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
@@ -218,7 +221,7 @@ export default function DashboardPage() {
                 <div className="space-y-4">
                   {(data.bookings || []).slice(0, 5).map((booking, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                             <div>
+                      <div>
                          <p className="font-medium text-gray-900">{booking.name}</p>
                          <p className="text-sm text-gray-600">{booking.pickupAddress} → {booking.dropAddress}</p>
                          <p className="text-xs text-gray-500">
@@ -229,7 +232,7 @@ export default function DashboardPage() {
                            {booking.passengers && `${booking.passengers} passengers`}
                            {booking.carType && ` • ${booking.carType.toUpperCase()}`}
                          </p>
-                       </div>
+                      </div>
                       <div className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
                         {booking.status || 'pending'}
                       </div>
@@ -279,7 +282,7 @@ export default function DashboardPage() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
@@ -310,7 +313,7 @@ export default function DashboardPage() {
                           </div>
                         </div>
                       </td>
-                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                          <div>
                            <div>{new Date(booking.pickupDate).toLocaleDateString()}</div>
                            {booking.pickupTime && (
@@ -360,14 +363,13 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(data.cars || []).map((car, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  <img 
-                    src={car.image} 
-                    alt={car.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/our-cabs/image.png';
-                    }}
+                <div className="h-48 bg-gray-200 flex items-center justify-center relative">
+                  <Image 
+                    src={car.image || '/images/our-cabs/image.png'} 
+                    alt={car.name || 'Car image'}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
@@ -574,11 +576,13 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(data.tourPackages || []).map((package_, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  <img 
-                    src={package_.imageUrl} 
-                    alt={package_.name}
-                    className="w-full h-full object-cover"
+                <div className="h-48 bg-gray-200 flex items-center justify-center relative">
+                  <Image 
+                    src={package_.imageUrl || '/images/default-package.jpg'} 
+                    alt={package_.name || 'Tour package image'}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
@@ -589,7 +593,7 @@ export default function DashboardPage() {
                       Edit Package
                     </button>
                     <a 
-                      href={package_.social.instagram} 
+                      href={package_.social?.instagram} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800"
@@ -609,14 +613,14 @@ export default function DashboardPage() {
             {(data.userSays || []).map((testimonial, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-full h-full rounded-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.src = '/images/testimonials/noimage.jpg';
-                      }}
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center relative overflow-hidden">
+                    <Image 
+                      src={testimonial.image || '/images/testimonials/noimage.jpg'} 
+                      alt={testimonial.name || 'User avatar'}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="48px"
+                      className="rounded-full"
                     />
                   </div>
                   <div className="ml-4">

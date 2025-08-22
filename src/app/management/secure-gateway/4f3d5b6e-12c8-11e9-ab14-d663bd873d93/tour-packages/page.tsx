@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,7 @@ import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
+import Image from "next/image";
 
 interface TourPackage {
     name: string;
@@ -52,7 +53,7 @@ const TourPackagesPage = () => {
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const fetchData = async (page: number = 1, limit: number = 10) => {
+  const fetchData = useCallback(async (page: number = 1, limit: number = 10) => {
     try {
       setLoading(true);
       const offset = (page - 1) * limit;
@@ -83,11 +84,11 @@ const TourPackagesPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData(currentPage, pagination.limit);
-  }, [currentPage]);
+  }, [currentPage, pagination.limit, fetchData]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -391,13 +392,14 @@ const TourPackagesPage = () => {
           // Preview Mode - Card Layout
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPackages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100">
-                                 <div className="h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100 relative">
+                                 <div className="h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center relative">
                    {pkg.imageUrl ? (
-                     <img
+                     <Image
                        src={pkg.imageUrl}
                        alt={pkg.name || 'Tour package image'}
-                       className="w-full h-full object-cover rounded-t-xl"
+                       fill
+                       className="object-cover rounded-t-xl"
                        onError={(e) => {
                          const target = e.currentTarget as HTMLElement;
                          target.style.display = 'none';
@@ -407,10 +409,9 @@ const TourPackagesPage = () => {
                          }
                        }}
                      />
-                   ) : null}
-                   <div className="w-full h-full flex items-center justify-center" style={{ display: pkg.imageUrl ? 'none' : 'flex' }}>
+                   ) : (
                      <FontAwesomeIcon icon={faImage} className="text-gray-400 text-4xl" />
-                   </div>
+                   )}
                    <div className="absolute top-3 right-3">
                      <button
                        onClick={() => deletePackage(index)}
@@ -478,11 +479,12 @@ const TourPackagesPage = () => {
                   placeholder="Image URL"
                 />
                                                                                                           {pkg.imageUrl && (
-                              <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200">
-                                <img
+                              <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 relative">
+                                <Image
                                   src={pkg.imageUrl}
                                   alt="Preview"
-                                  className="w-full h-full object-cover"
+                                  fill
+                                  className="object-cover"
                                   onError={(e) => {
                                     const target = e.currentTarget as HTMLElement;
                                     target.style.display = 'none';
