@@ -26,10 +26,66 @@ const writeSubscribers = (subscribers: any) => {
 };
 
 // Handle GET requests to fetch subscribers
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const subscribers = readSubscribers();
-    return NextResponse.json(subscribers);
+    
+    // Get query parameters
+    const { searchParams } = new URL(req.url);
+    const download = searchParams.get('download');
+    
+    // If download parameter is present, return CSV data
+    if (download === 'csv') {
+      const csvHeaders = [
+        'ID',
+        'Name',
+        'Email',
+        'Phone',
+        'Status',
+        'Source',
+        'Subscribed At'
+      ];
+      
+      const csvRows = subscribers.map((subscriber: any) => [
+        subscriber.id || '',
+        subscriber.name || '',
+        subscriber.email || '',
+        subscriber.phone || '',
+        subscriber.status || 'active',
+        subscriber.source || 'website',
+        subscriber.subscribedAt || ''
+      ]);
+      
+      const csvContent = [
+        csvHeaders.join(','),
+        ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+      
+      return new NextResponse(csvContent, {
+        headers: {
+          'Content-Type': 'text/csv',
+          'Content-Disposition': 'attachment; filename="subscribers.csv"'
+        }
+      });
+    }
+    
+    // Regular pagination logic
+    const limit = parseInt(searchParams.get('limit') || '10');
+    const offset = parseInt(searchParams.get('offset') || '0');
+    
+    // Apply pagination
+    const totalCount = subscribers.length;
+    const paginatedSubscribers = subscribers.slice(offset, offset + limit);
+    
+    return NextResponse.json({
+      subscribers: paginatedSubscribers,
+      pagination: {
+        total: totalCount,
+        limit,
+        offset,
+        hasMore: offset + limit < totalCount
+      }
+    });
   } catch (error) {
     console.error('Error fetching subscribers:', error);
     return NextResponse.json({ error: 'Failed to fetch subscribers' }, { status: 500 });

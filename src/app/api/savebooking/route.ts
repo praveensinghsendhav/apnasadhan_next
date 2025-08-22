@@ -3,15 +3,19 @@ import fs from 'fs';
 import path from 'path';
 
 interface Booking {
+  id: string;
   name: string;
   number: string;
   email?: string;
   pickupAddress: string;
   dropAddress: string;
   pickupDate: string;
+  pickupTime: string;
+  passengers: string;
+  carType: string;
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const dataDir = path.join(process.cwd(), 'src', 'data');
   const filePath = path.join(dataDir, 'bookings.json');
 
@@ -19,11 +23,88 @@ export async function GET() {
     if (fs.existsSync(filePath)) {
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const bookings = JSON.parse(fileContents);
+      
       // Sort by createdAt descending (newest first)
       bookings.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      return NextResponse.json(bookings);
+      
+      // Get query parameters
+      const { searchParams } = new URL(req.url);
+      const download = searchParams.get('download');
+      
+      // If download parameter is present, return CSV data
+      if (download === 'csv') {
+        const csvHeaders = [
+          'ID',
+          'Name',
+          'Phone Number',
+          'Email',
+          'Pickup Address',
+          'Drop Address',
+          'Pickup Date',
+          'Pickup Time',
+          'Passengers',
+          'Car Type',
+          'Status',
+          'Price',
+          'Created At'
+        ];
+        
+        const csvRows = bookings.map((booking: any) => [
+          booking.id || '',
+          booking.name || '',
+          booking.number || '',
+          booking.email || '',
+          booking.pickupAddress || '',
+          booking.dropAddress || '',
+          booking.pickupDate || '',
+          booking.pickupTime || '',
+          booking.passengers || '',
+          booking.carType || '',
+          booking.status || '',
+          booking.price || '',
+          booking.createdAt || ''
+        ]);
+        
+        const csvContent = [
+          csvHeaders.join(','),
+          ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+        ].join('\n');
+        
+        return new NextResponse(csvContent, {
+          headers: {
+            'Content-Type': 'text/csv',
+            'Content-Disposition': 'attachment; filename="bookings.csv"'
+          }
+        });
+      }
+      
+      // Regular pagination logic
+      const limit = parseInt(searchParams.get('limit') || '10');
+      const offset = parseInt(searchParams.get('offset') || '0');
+      
+      // Apply pagination
+      const totalCount = bookings.length;
+      const paginatedBookings = bookings.slice(offset, offset + limit);
+      
+      return NextResponse.json({
+        bookings: paginatedBookings,
+        pagination: {
+          total: totalCount,
+          limit,
+          offset,
+          hasMore: offset + limit < totalCount
+        }
+      });
     }
-    return NextResponse.json([]);
+    return NextResponse.json({
+      bookings: [],
+      pagination: {
+        total: 0,
+        limit: 10,
+        offset: 0,
+        hasMore: false
+      }
+    });
   } catch (error) {
     console.error('Error reading file:', error);
     return NextResponse.json({ error: 'Failed to read data' }, { status: 500 });

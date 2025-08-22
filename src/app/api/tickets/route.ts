@@ -26,10 +26,68 @@ const writeTickets = (tickets: any) => {
 };
 
 // Handle GET requests to fetch tickets
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const tickets = readTickets();
-    return NextResponse.json(tickets);
+    
+    // Get query parameters
+    const { searchParams } = new URL(req.url);
+    const download = searchParams.get('download');
+    
+    // If download parameter is present, return CSV data
+    if (download === 'csv') {
+      const csvHeaders = [
+        'ID',
+        'Name',
+        'Email',
+        'Phone',
+        'Message',
+        'Status',
+        'Priority',
+        'Created At'
+      ];
+      
+      const csvRows = tickets.map((ticket: any) => [
+        ticket.id || '',
+        ticket.name || '',
+        ticket.email || '',
+        ticket.phone || '',
+        ticket.message || '',
+        ticket.status || 'pending',
+        ticket.priority || 'medium',
+        ticket.createdAt || ''
+      ]);
+      
+      const csvContent = [
+        csvHeaders.join(','),
+        ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+      
+      return new NextResponse(csvContent, {
+        headers: {
+          'Content-Type': 'text/csv',
+          'Content-Disposition': 'attachment; filename="support-tickets.csv"'
+        }
+      });
+    }
+    
+    // Regular pagination logic
+    const limit = parseInt(searchParams.get('limit') || '10');
+    const offset = parseInt(searchParams.get('offset') || '0');
+    
+    // Apply pagination
+    const totalCount = tickets.length;
+    const paginatedTickets = tickets.slice(offset, offset + limit);
+    
+    return NextResponse.json({
+      tickets: paginatedTickets,
+      pagination: {
+        total: totalCount,
+        limit,
+        offset,
+        hasMore: offset + limit < totalCount
+      }
+    });
   } catch (error) {
     console.error('Error fetching tickets:', error);
     return NextResponse.json({ error: 'Failed to fetch tickets' }, { status: 500 });

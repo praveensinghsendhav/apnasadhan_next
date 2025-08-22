@@ -45,6 +45,10 @@ export default function Home() {
     ]
   };
 
+  // Split packages into two rows for large screens
+  const firstRow = tourPackages.slice(0, 4);
+  const secondRow = tourPackages.slice(4, 8);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,7 +58,9 @@ export default function Home() {
             center
           />
         </div>
-        <div className="mt-8">
+        
+        {/* Mobile Layout - Single Row */}
+        <div className="block lg:hidden mt-8">
           <Slider {...settings} className="slick-slider">
             {tourPackages.map((member, index) => (
               <div key={index} className="px-2">
@@ -67,6 +73,41 @@ export default function Home() {
               </div>
             ))}
           </Slider>
+        </div>
+
+        {/* Desktop Layout - Two Rows */}
+        <div className="hidden lg:block space-y-8">
+          {/* First Row */}
+          <div className="mt-8">
+            <Slider {...settings} className="slick-slider">
+              {firstRow.map((member, index) => (
+                <div key={index} className="px-2">
+                  <TeamCard
+                    imageUrl={member.imageUrl}
+                    name={member.name}
+                    city={member.city}
+                    social={member.social}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+          
+          {/* Second Row */}
+          <div className="mt-8">
+            <Slider {...settings} className="slick-slider">
+              {secondRow.map((member, index) => (
+                <div key={index + 4} className="px-2">
+                  <TeamCard
+                    imageUrl={member.imageUrl}
+                    name={member.name}
+                    city={member.city}
+                    social={member.social}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </div>
